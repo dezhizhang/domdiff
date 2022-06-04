@@ -29,9 +29,9 @@ function performSyncWorkOnRoot(fiberRoot) {
 }
 
 function workLoopSync() {
-    while(workInProgress) {
-       performUnitOfWork(workInProgress);
-    }
+    // while(workInProgress) {
+    //    performUnitOfWork(workInProgress);
+    // }
 }
 
 // 执行工作单元

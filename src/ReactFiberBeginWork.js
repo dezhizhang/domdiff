@@ -1,6 +1,6 @@
 import { HostComponent, HostRoot } from "./ReactWorkTags";
 import { reconcileChildFibers,mountChildFibers  } from './ReactChildFiber';
-
+import { shouldSetTextContent } from './ReactDOMHostConfig';
 
 export function beginWork(current, workInProgress) {
   switch (workInProgress.tag) {
@@ -40,6 +40,18 @@ export function reconcileChildren(current,workInProgress,nextChildren) {
 
 
 
-function updateHostComponent() {
+function updateHostComponent(current,workInProgress) {
+    const type = workInProgress.type;
+
+    const nextProps = workInProgress.pendingProps;
+    let nextChildren = nextProps.children;
+
+    let isDirectTextChild = shouldSetTextContent(type,nextProps);
+    if(isDirectTextChild) {
+        nextChildren = null;
+    }
+
+    reconcileChildren(current,workInProgress,nextChildren)
+    return workInProgress.child;
 
 }
