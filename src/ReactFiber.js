@@ -1,6 +1,6 @@
 
 import { NoFlags } from './ReactFiberFlags';
-import { HostRoot } from './ReactWorkTags';
+import { HostComponent, HostRoot } from './ReactWorkTags';
 
 export function createHostRootFiber() {
     return createFiber(HostRoot);
@@ -36,4 +36,17 @@ export function createWorkInProgress(current, pendingProps) {
     workInProgress.fistEffect = workInProgress.lastEffect = workInProgress.nextEffect = null;
     return workInProgress;
 
+}
+
+// 根据虚拟dom创建fiber节点
+export function createFiberFromElement(element) {
+    const { key,type,props} = element;
+    let tag;
+    if(typeof type === 'string') {
+        tag = HostComponent;
+    }
+    const fiber = createFiber(tag,props,key);
+    fiber.type = type;
+    return fiber;
+    
 }
