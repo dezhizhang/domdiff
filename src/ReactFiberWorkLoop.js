@@ -1,4 +1,8 @@
 
+//当前正在更新的根
+let workInProgressRoot = null;
+//当前正在更新fiber节点
+let workInProgress = null;
 
 export function scheduleUpdateOnFiber(fiber) {
     const fiberRoot = markUpdateLaneFromFiberToRoot(fiber);
@@ -15,6 +19,13 @@ function markUpdateLaneFromFiberToRoot(sourceFiber) {
     return node.stateNode;
 }
 
-function performSyncWorkOnRoot() {
+function performSyncWorkOnRoot(fiberRoot) {
+    workInProgressRoot = fiberRoot;
+    workInProgress = createWorkInProgress(workInProgressRoot.current);
+    console.log('workInProgress',workInProgress)
+
+}
+
+function createWorkInProgress() {
     
 }
