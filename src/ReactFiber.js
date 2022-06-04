@@ -19,20 +19,21 @@ function FiberNode(tag, pendingProps, key) {
 export function createWorkInProgress(current, pendingProps) {
     let workInProgress = current.alternate;
     if (!workInProgress) {
-
+        workInProgress = createFiber(current.tag, pendingProps, current.key);
         workInProgress.type = current.type;
         workInProgress.stateNode = current.stateNode;
         workInProgress.alternate = current;
         current.alternate = workInProgress;
-        workInProgress = createFiber(current.tag, pendingProps, current.key);
+   
     }else {
         workInProgress.pendingProps = pendingProps;
     }
-
+    
     workInProgress.flags = NoFlags;
     workInProgress.child = null;
     workInProgress.sibling = null;
     workInProgress.updateQueue = current.updateQueue;
     workInProgress.fistEffect = workInProgress.lastEffect = workInProgress.nextEffect = null;
-    
+    return workInProgress;
+
 }

@@ -1,10 +1,11 @@
+import { updateContainer } from "./ReactFiberReconcal";
 import { createFiberRoot } from "./ReactFiberRoot";
 
 
 function render(element,container) {
     let fiberRoot = createFiberRoot(container);
-    console.log(fiberRoot);
-    
+    updateContainer(element,fiberRoot);
+
 }
 
 const ReactDOM = {

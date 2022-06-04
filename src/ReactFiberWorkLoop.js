@@ -1,3 +1,4 @@
+import { createWorkInProgress } from "./ReactFiber";
 
 //当前正在更新的根
 let workInProgressRoot = null;
@@ -21,11 +22,9 @@ function markUpdateLaneFromFiberToRoot(sourceFiber) {
 
 function performSyncWorkOnRoot(fiberRoot) {
     workInProgressRoot = fiberRoot;
-    workInProgress = createWorkInProgress(workInProgressRoot.current);
+    workInProgress = createWorkInProgress(workInProgressRoot.current)
+    // workInProgress = createWorkInProgress();
     console.log('workInProgress',workInProgress)
 
 }
 
-function createWorkInProgress() {
-    
-}
