@@ -46,7 +46,15 @@ function performUnitOfWork(unitOfWork) {
     }
 }
 
-function completeUnitOfWork() {
+function completeUnitOfWork(unitOfWork) {
+    do {
+        const current = unitOfWork.alternate;
+        const returnFiber = unitOfWork.return;
+        completeWork(current,unitOfWork);
+    }while(unitOfWork)
+}
 
+function completeWork() {
+    
 }
 

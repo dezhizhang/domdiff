@@ -1,4 +1,4 @@
-import { createInstance } from "./ReactDOMHostConfig";
+import { createInstance,finalizeInitialChildren } from "./ReactDOMHostConfig";
 import { HostComponent } from "./ReactWorkTags";
 
 
@@ -8,7 +8,9 @@ export function completeWork(current,workInProgress) {
     switch(workInProgress.tag) {
         case HostComponent:
             const type = workInProgress.type;
-            const instance = createInstance(type,props);
+            const instance = createInstance(type,newProps);
+            workInProgress.stateNode = instance;
+            finalizeInitialChildren(instance,type,newProps)
             break
             default:
                 break
