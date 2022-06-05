@@ -25,14 +25,24 @@ function performSyncWorkOnRoot(fiberRoot) {
     workInProgressRoot = fiberRoot;
     workInProgress = createWorkInProgress(workInProgressRoot.current)
     workLoopSync();
+    commitRoot();
+}
 
+function commitRoot() {
+    const finishedWork = workInProgressRoot.current.alternate;
+    workInProgress.finishedWork = finishedWork;
+    commitMutationEffects(workInProgressRoot);
+}
+
+function commitMutationEffects() {
+    
 }
 
 function workLoopSync() {
-    performUnitOfWork(workInProgress);
-    // while(workInProgress) {
-    //    performUnitOfWork(workInProgress);
-    // }
+
+    while(workInProgress) {
+       performUnitOfWork(workInProgress);
+    }
 }
 
 // 执行工作单元
@@ -55,6 +65,6 @@ function completeUnitOfWork(unitOfWork) {
 }
 
 function completeWork() {
-    
+
 }
 

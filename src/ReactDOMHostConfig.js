@@ -14,3 +14,7 @@ export function createInstance(type, props) {
 export function finalizeInitialChildren(domElement,type,props) {
     setInitialProperties(domElement,type,props);
 }
+
+export function appendChild() {
+    
+}
