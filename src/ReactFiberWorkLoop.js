@@ -29,6 +29,7 @@ function performSyncWorkOnRoot(fiberRoot) {
 }
 
 function workLoopSync() {
+    performUnitOfWork(workInProgress);
     // while(workInProgress) {
     //    performUnitOfWork(workInProgress);
     // }
